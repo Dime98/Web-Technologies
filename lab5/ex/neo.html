@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<p id="demo">html preview</p>
+
+<script>
+////////////////////////////////////////////////
+  function minArr(R) {
+  var minimum=0;
+  for (c = 1; c < R.length; c++)
+      {
+          if (R[c] < minimum)
+          {
+             minimum = R[c];
+          }
+      }
+  return minimum
+  }
+///////////////////////////////////////////////////////////
+  function min(p1, p2) {
+    if(p1<p2){
+      return p1;
+    }
+    else{
+      return p2;
+    }
+  }
+
+///////////////////////////////////////////////////////////////////
+
+  class Animal {
+    constructor(name) {
+      this.name = name;
+    }
+    present() {
+      return 'my name is ' + this.name;
+    }
+  }
+
+  class Dog extends Animal {
+
+    constructor(name) {
+      super(name);
+       this.date = new Date();
+    }
+    show() {
+      return this.present() + ", it's " + this.date;
+    }
+  }
+
+/////////////////////////////////////////////////////////////
+  let cache = new Map();
+  function loadAPI(url) {
+    if (cache.has(url)) {
+      return Promise.resolve(cache.get(url));
+    }
+
+    return fetch(url)
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(response) {
+       console.log(response);
+    });
+
+  }
+////////////////////////////////////////////////
+
+async function getPokeAsync()
+{
+  let response = await fetch(`https://pokeapi.co/api/v2/pokemon/25/`);
+  let data = await response.json()
+  return data;
+}
+
+///////////////////////////////////////////////////////////////////
+
+
+
+
+
+console.log("Ex 1");
+
+
+var hash="#";
+for (i = 0; i < 7; i++) {
+  var res="#";
+  for (ii = 0; ii < i; ii++) {
+
+    res = res.concat(hash);
+  }
+  console.log(res);
+}
+
+console.log("Ex 2");
+console.log( "the minimum betwen 7 and 2 is "+ min(7,2));
+
+console.log("Ex 3");
+var x = [ 1, -10, 1];
+console.log( "the minimum value [ 1, -10, 1] is "+ minArr(x));
+console.log("Ex 4");
+mydog = new Dog ("Jimmy");
+console.log(mydog.show());
+
+
+
+var button = document.createElement("button");
+button.innerHTML = "EX5";
+
+var body = document.getElementsByTagName("body")[0];
+body.appendChild(button);
+
+
+button.addEventListener ("click", function() {
+console.log("Ex 5");
+console.log(loadAPI("https://pokeapi.co/api/v2/pokemon/25/"));
+});
+
+
+var button = document.createElement("button");
+button.innerHTML = "EX6";
+var body = document.getElementsByTagName("body")[0];
+body.appendChild(button);
+
+
+button.addEventListener ("click", function() {
+  console.log("Ex 6");
+  getPokeAsync()
+    .then(data => console.log(data));
+
+});
+
+
+
+
+</script>
+</body>
+</html>
